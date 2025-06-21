@@ -59,3 +59,50 @@ if selected_mbti:
 # ------------------- 푸터 -------------------
 st.markdown("---")
 st.markdown("<p style='text-align: center;'>© 2025 by 진로꿈터. Powered by Streamlit 🚀</p>", unsafe_allow_html=True)
+
+#-----------------추가
+
+
+
+# 추천 직업 + 설명
+recommendations = {
+    "INTJ": [
+        ("💻 데이터 과학자", "논리적인 사고와 분석력이 뛰어난 INTJ에게 딱 맞는 직업입니다. 데이터를 해석하고 미래를 예측하는 능력을 발휘할 수 있어요."),
+        ("🧠 전략 컨설턴트", "복잡한 문제를 해결하고, 기업의 방향을 설계하는 데 탁월한 역량을 발휘할 수 있어요."),
+        ("📊 금융 분석가", "수치에 강하고 신중한 성격이 금융 분야에서 강점을 가질 수 있게 합니다.")
+    ],
+    "INFP": [
+        ("🎨 일러스트레이터", "감성적이고 창의적인 INFP에게 예술적인 직업은 최고의 선택이에요."),
+        ("📖 시인", "마음속의 이야기를 글로 표현하는 재능을 발휘해보세요."),
+        ("🧑‍🎤 음악가", "내면의 감정을 음악으로 표현하고, 사람들의 감성을 울릴 수 있어요.")
+    ],
+    "ENFP": [
+        ("📢 홍보 전문가", "활동적인 성격과 열정적인 에너지를 활용할 수 있는 직업이에요."),
+        ("🎬 영화감독", "아이디어가 넘치는 ENFP에게 창의력을 폭발시킬 무대가 되어줄 거예요."),
+        ("🌍 여행가", "새로운 곳을 탐험하고 경험을 사람들과 나누는 걸 좋아한다면 이 직업이 제격!")
+    ],
+    # 👉 다른 MBTI도 원하면 추가해줄게!
+}
+
+# 사용자 선택
+selected_mbti = st.selectbox("🧬 당신의 MBTI를 선택하세요:", list(mbti_types.keys()), index=0, format_func=lambda x: f"{x} - {mbti_types[x]}")
+
+if selected_mbti:
+    st.markdown(f"<h2 style='color:#ffcc70;'>🎯 {selected_mbti} 유형에게 어울리는 직업은?</h2>", unsafe_allow_html=True)
+    
+    jobs = recommendations.get(selected_mbti, [])
+    
+    if not jobs:
+        st.warning("🙇‍♀️ 죄송해요! 아직 이 MBTI 유형에 대한 추천 직업이 준비되지 않았어요.")
+    else:
+        for title, description in jobs:
+            with st.expander(f"{title}"):
+                st.markdown(f"📝 **설명**: {description}")
+
+    st.success("🌟 꿈을 향해 나아가세요! 당신의 가능성은 무한합니다 💫")
+
+# 푸터
+st.markdown("---")
+st.markdown("<p style='text-align: center;'>© 2025 by 진로꿈터. Powered by Streamlit 🚀</p>", unsafe_allow_html=True)
+
+
